@@ -1,16 +1,28 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import ErrorMessage from "./components/ErrorMessage";
+import FoodItems from "./components/FoodItems";
+import Container from "./components/Container";
+import FoodInput from "./components/FoodInput";
 
 function App() {
+  let foodItems = ["dal", "green vegetable", "roti", "salad", "milk", "ghee"];
+
+  const handleOnChange = () => {
+    (event) => {
+      console.log(event.target.value);
+    };
+  };
+
   return (
     <>
-      <h1>Healthy Food</h1>
-      <ul class="list-group">
-        <li class="list-group-item ">Dal</li>
-        <li class="list-group-item">Green Vegetable</li>
-        <li class="list-group-item">Roti</li>
-        <li class="list-group-item">salad</li>
-        <li class="list-group-item">milk </li>
-      </ul>
+      <Container>
+        <h1 className="food-heading">Healthy Food</h1>
+        <FoodInput handleOnChange={handleOnChange}></FoodInput>
+        <ErrorMessage items={foodItems}></ErrorMessage>
+        <FoodItems items={foodItems}></FoodItems>
+      </Container>
     </>
   );
 }
