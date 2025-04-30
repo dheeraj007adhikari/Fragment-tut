@@ -9,10 +9,8 @@ import FoodInput from "./components/FoodInput";
 function App() {
   let foodItems = ["dal", "green vegetable", "roti", "salad", "milk", "ghee"];
 
-  const handleOnChange = () => {
-    (event) => {
-      console.log(event.target.value);
-    };
+  const handleOnChange = (event) => {
+    console.log(event.target.value);
   };
 
   return (
