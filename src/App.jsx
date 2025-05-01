@@ -5,19 +5,25 @@ import ErrorMessage from "./components/ErrorMessage";
 import FoodItems from "./components/FoodItems";
 import Container from "./components/Container";
 import FoodInput from "./components/FoodInput";
+import { useState } from "react";
 
 function App() {
-  let foodItems = ["dal", "green vegetable", "roti", "salad", "milk", "ghee"];
+  const [foodItems, setFoodItems] = useState([]);
 
-  const handleOnChange = (event) => {
-    console.log(event.target.value);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      let newItems = [...foodItems, newFoodItem];
+      event.target.value = "";
+      setFoodItems(newItems);
+    }
   };
 
   return (
     <>
       <Container>
         <h1 className="food-heading">Healthy Food</h1>
-        <FoodInput handleOnChange={handleOnChange}></FoodInput>
+        <FoodInput handleKeyDown={handleKeyDown}></FoodInput>
         <ErrorMessage items={foodItems}></ErrorMessage>
         <FoodItems items={foodItems}></FoodItems>
       </Container>
